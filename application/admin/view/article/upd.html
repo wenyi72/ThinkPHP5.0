@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="{:config('static_admin')}/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="{:config('static_admin')}/js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/plugins/ueditor/ueditor.config.js?v=1"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/plugins/ueditor/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="/static/plugins/ueditor/ lang/zh-cn/zh-cn.js"></script>
+
+    <style>
+        .active{
+            border-bottom: solid 3px #66c9f3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">表单</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div class="formtitle">
+            <span class="active">基本信息</span>
+        </div>
+        <form action="" method="post" >
+            <input type="hidden" name="article_id" value="{$row['article_id']}" />
+            <ul class="forminfo">
+                <li>
+                    <label>文章名称</label>
+                    <input name="title" value="{$row['title']}" placeholder="请输入文章名称" type="text" class="dfinput" /><i>名称不能超过30个字符</i>
+                </li>
+                <li>
+                    <label>所属文章分类</label>
+                    <select name="cat_id" class="dfinput">
+                        {foreach name="cats" item='v'}
+                            <option value="{$v['cat_id']}">
+                                {:str_repeat('--',$v['level'])}{$v['cat_name']}
+                            </option>
+                        {/foreach}
+                    </select>
+                </li>
+                <li>
+                    <label>文章图片</label>
+                    <input name="img" placeholder="" type="file" />
+                </li>
+                <li>
+                    <label>文章内容</label>
+                    <textarea id="content" name="content" placeholder="请输入文章内容" cols="" rows="">
+                        {$row['content']}
+                    </textarea>
+                </li>   
+            </ul>
+			<li>
+                    <label>&nbsp;</label>
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="确认保存" />
+             </li>
+        </form>
+    </div>
+</body>
+<script>
+    var ue=UE.getEditor('content');
+    $("select[name='cat_id']").val("{$row['cat_id']}");
+</script>
+
+</html>

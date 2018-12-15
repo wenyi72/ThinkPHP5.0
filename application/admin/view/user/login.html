@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>我是模板！</h1>
+    {foreach name='users' item='user'}
+        <br/>名字：序号：{$key+1}-{$user['username']}--年龄：{$user['age']}
+    {/foreach}
+    <br/>
+    名字：{$name},年龄：{$age}
+</body>
+</html>

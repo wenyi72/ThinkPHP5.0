@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>我是模板！</h1>
+    <a href="{:url('/admin/public/login',['id'=>100,'name'=>'小美'])}">跳转到login</a>
+    <hr>
+	<form action="{:url('/admin/public/login')}" method='post'>
+		id: <input type="text" name="id"> <br>
+		用户名： <input type="text" name="name">  <br>
+		爱好：
+		<input type="checkbox" name="hobby[]" value="1"> 打球
+		<input type="checkbox" name="hobby[]" value="2"> 跑步
+		<input type="checkbox" name="hobby[]" value="3"> 撸代码
+		<input type="submit" name="" value='提交'>
+	</form>
+</body>
+</html>
